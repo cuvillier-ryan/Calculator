@@ -21,11 +21,23 @@ app.post("/", function(req, res) {
 
   var result = num1 + num2;
 
-  res.send("The result of the calculation is "  + result);
-})
+  res.send("The result of the calculation is " + result);
+});
 
+//BMI Calculator Get and Post request
+app.get("/bmicalculator", function(req, res) {
+  res.sendFile(__dirname + "/bmiCalculator.html");
+});
 
+app.post("/bmicalculator", function(req, res) {
+  var weight = parseFloat(req.body.weight);
+  var height = parseFloat(req.body.height);
 
+  var bmi = weight / Math.pow(height, 2);
+
+  res.send("Your BMI is " + bmi);
+
+});
 
 app.listen(3000, function() {
   console.log('App listening on port 3000');
